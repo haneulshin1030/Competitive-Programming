@@ -20,15 +20,12 @@ void bfs (vector<vector<bool>> &vis, int x, int y) {
         }
         if (x < m - 1) {
             q.push ({x + 1, y});
-
         }
         if (y > 0) {
             q.push ({x, y - 1});
-
         }
         if (y < n - 1) {
             q.push ({x, y + 1});
-
         }
     }
 }
