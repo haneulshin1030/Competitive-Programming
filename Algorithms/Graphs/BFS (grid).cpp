@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
-
 using namespace std;
+
 int m, n;
 void bfs (vector<vector<bool>> &vis, int x, int y) {
     queue<pair<int, int> >q;
