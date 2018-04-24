@@ -48,7 +48,6 @@ int main() {
         parent[i] = i;
     }
 
-    //Graph adj (v);
     for (auto it = s.begin(); it != s.end(); it++) {
         int w = it->first, a = it->second.first, b = it->second.second;
         unite (a, b, w);
