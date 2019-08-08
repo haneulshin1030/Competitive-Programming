@@ -1,36 +1,61 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define INF 1<<30
+#define INF INT_MAX
 int n;
+vector<vector<int>> adj;
 
-int bfs (int x, int y, vector<vector<int>> &adj) {
+// dist
+int bfs (int s, int t) {
     queue<int> q;
-    vector<bool> vis (1000);
-    vector<int> dist (1000, INF);
-    int d = 0;
-    dist[x] = 0;
-    q.push (x);
+    vector<int> dist (n, INF);
+    
+    dist[s] = 0;
+    q.push (s);
+    
     while (!q.empty()) {
-        d++;
         int a = q.front();
         q.pop();
-
+        
         for (auto u : adj[a]) {
             if (dist[u] == INF) {
-                dist[u] = d;
-                q.push ({u});
+                dist[u] = dist[a] + 1;
+                q.push (u);
             }
         }
     }
-    for (int i = 0; i < adj.size(); i++) {
-        cout << i << ": " << dist[i] << endl;
-    }
-    return dist[y];
+    return dist[t];
 }
 
+/*
+ for (int i = 0; i < adj.size(); i++) {
+ cout << i << ": " << dist[i] << endl;
+ }
+ */
+
+// vis
+void bfs (int s) {
+    queue<int> q;
+    vector<bool> vis (n);
+    
+    vis[s] = true;
+    q.push (s);
+    while (!q.empty()) {
+        int a = q.front();
+        q.pop();
+        
+        for (auto u : adj[a]) {
+            if (!vis[u]) {
+                vis[u] = true;
+                q.push (u);
+            }
+        }
+    }
+}
 
 int main() {
-
-
+    cin >> n;
+    adj.resize (n);
+    //fill adj list
+    bfs (0, n-1);
 }
